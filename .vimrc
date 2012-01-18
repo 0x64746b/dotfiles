@@ -1,5 +1,6 @@
 syntax on
 set nowrap
+set textwidth=80
 
 " trailing whitespaces
 "" highlighting
@@ -13,6 +14,16 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 """ enable
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 "" trimming
 command KillTrailingWhitespace %s/\s\+$//e
+
+"overlong lines
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+set colorcolumn=+1
+
+highlight OverLength ctermbg=lightgrey guibg=lightgrey
+match OverLength /\%>80v.\+/
+autocmd BufWinEnter * match OverLength /\%>80v.\+/
+
+"fix mem leak upon matching
+autocmd BufWinLeave * call clearmatches()
