@@ -1,5 +1,12 @@
+"pathogen
+filetype off
+"call pathogen#incubate()
+"call pathogen#helptags()
+
 "formatting
 syntax on
+filetype on
+filetype plugin indent on
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -27,7 +34,7 @@ set mouse=a
 set wildmode=longest:list
 
 "replace word under cursor
-nmap <C-e> :%s/<C-R>=expand("<cword>")<CR>//gc
+"command ReplaceUnderCursor :%s/<C-R>=expand("<cword>")<CR>//gc
 
 "jump to function definitions
 nmap <C-d>s :cs find s <C-R>=expand("<cword>")<CR><CR>
@@ -49,13 +56,34 @@ nnoremap <C-c> <C-t>
 "nmap <silent><Tab><Tab> :ls<CR>:b
 "nmap ` <C-^>
 nmap <C-c> :bn<CR>:bd#<CR>
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 set autowriteall
 set splitright
 set splitbelow
 
+"quickfix buffer
+nmap cf :cfirst<CR>
+nmap cn :cnext<CR>
+nmap cp :cprev<CR>
+
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
+"leader
+let mapleader=","
+
 "folding
 set foldmethod=indent
+set foldlevelstart=99
 
 "coding conventions
 ""trailing whitespaces
@@ -79,7 +107,29 @@ autocmd BufWinLeave * call clearmatches()
 " Buffer Explorer
 nmap <silent> <Tab><Tab> :BufExplorer<CR>
 
+" MiniBufExpl
+let g:miniBufExplSplitBelow=0
+
 " Tag List
 nnoremap <silent> <F8> :TlistToggle<CR>
 let Tlist_GainFocus_On_ToggleOpen=1
 let Tlist_Show_One_File=1
+
+" NERD Tree
+"  auto-start
+"autocm vimenter * NERDTree
+map <C-e> :NERDTreeToggle<CR>
+
+" SuperTab
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+
+set completeopt=menuone,longest,preview
+
+" Rope
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+map <leader>f :RopeFindOccurrences<CR>
+
+" Ack
+nmap <leader>a <Esc>:Ack!
