@@ -3,6 +3,12 @@ filetype off
 "call pathogen#incubate()
 "call pathogen#helptags()
 
+"colorscheme
+" $ wget -P ~/.vim/colors/ https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+"colorscheme molokai
+set t_Co=256
+set background=dark
+
 "formatting
 syntax on
 filetype on
