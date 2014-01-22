@@ -1,0 +1,4 @@
+defscrollback 99000
+#termcapinfo xterm* ti@:te@
+caption always
+caption string '%{= wk}[ %H ] [%{b}#%n%{k}] [%{b} %t %= %{k}]' # good looking window bar
