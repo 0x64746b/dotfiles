@@ -1,59 +1,37 @@
-# Clean, simple, compatible and meaningful.
-# Tested on Linux, Unix and Windows under ANSI colors.
-# It is recommended to use with a dark background and the font Inconsolata.
-# Colors: black, red, green, yellow, *blue, magenta, cyan, and white.
-#
-# http://ysmood.org/wp/2013/03/my-ys-terminal-theme/
-# Mar 2013 ys
+# ZSH Theme (based on `bira`)
 
-# Machine name.
-function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || hostname
-}
+local return_code="%(?..%F{red}↦ %? %f)"
 
-# Directory info.
-local current_dir='${PWD/#$HOME/~}'
-
-# Git info.
-local git_info='$(git_prompt_info)'
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[default]%}on%{$reset_color%} git:%{$fg[cyan]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}x"
-ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}o"
-
-# RVM info.
-local rvm_info='$(rvm_prompt_info)'
-
-# Return code
-local return_code="%(?..%{$fg[red]%} ↳ %?%{$reset_color%})"
-
-# Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $ 
-PROMPT="
-${rvm_info}
-%{$terminfo[bold]$fg[blue]%} #%{$reset_color%} \
-%{$fg[cyan]%}%n \
-%{$fg[default]%}at \
-%{$fg[green]%}$(box_name) \
-%{$fg[default]%}in \
-%{$terminfo[bold]$fg[blue]%}${current_dir}%{$reset_color%}\
-${git_info}
-${return_code} \
-%{$terminfo[bold]$fg[blue]%}$ %{$reset_color%}"
-
-RPS1="[%*]"
-
-
-if [[ "$(whoami)" == "root" ]]; then
-PROMPT="
-${rvm_info}
- #%{$reset_color%} \
-%{$terminfo[bold]$fg[red]%}%n%{$reset_color%} \
-%{$fg[default]%}at \
-%{$terminfo[bold]$fg[default]%}$(box_name)%{$reset_color%} \
-%{$fg[default]%}in \
-%{$terminfo[bold]$fg[black]%}${current_dir}%{$reset_color%}
-${return_code} \
-%{$terminfo[bold]$fg[red]%}%% %{$reset_color%}"
-
-RPS1="%{$fg[white]%}[%*]%{$reset_color%}"
+if [[ $UID -eq 0 ]]; then
+    local user='%F{red}%n%f'
+    local user_symbol='%B%F{red}#%f%b'
+else
+    local user='%F{blue}%n%f'
+    local user_symbol='%F{blue}$%f'
 fi
+
+local host='%F{cyan}%m%f'
+local current_dir='%F{magenta}%~%f'
+
+local venv='$(virtualenv_prompt_info)'
+local rvm_ruby=''
+if which rvm-prompt &> /dev/null; then
+  rvm_ruby='%F{red}‹$(rvm-prompt i v g)›%f'
+else
+  if which rbenv &> /dev/null; then
+    rvm_ruby='%F{red}‹$(rbenv version | sed -e "s/ (set.*$//")›%f'
+  fi
+fi
+local git_branch='$(git_prompt_info)'
+MODE_INDICATOR='-- NORMAL --'
+
+PROMPT="╭─${user} at ${host} in ${current_dir}${venv}${rvm_ruby}${git_branch}
+╰─${return_code}${user_symbol} "
+RPS1='$(vi_mode_prompt_info)'
+#RPS1=" [%*]"
+
+ZSH_THEME_VIRTUALENV_PREFIX='%F{black}|'  # orange is the new black
+ZSH_THEME_VIRTUALENV_SUFFIX='%f'
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %F{yellow}‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="›%f"
