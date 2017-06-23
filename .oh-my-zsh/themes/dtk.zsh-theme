@@ -30,8 +30,8 @@ PROMPT="╭─${user} at ${host} in ${current_dir}${venv}${rvm_ruby}${git_branch
 RPS1='$(vi_mode_prompt_info)'
 #RPS1=" [%*]"
 
-ZSH_THEME_VIRTUALENV_PREFIX='%F{black}|'  # orange is the new black
-ZSH_THEME_VIRTUALENV_SUFFIX='%f'
+ZSH_THEME_VIRTUALENV_PREFIX='%B%F{magenta}|'
+ZSH_THEME_VIRTUALENV_SUFFIX='%f%b'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %F{yellow}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="›%f"
