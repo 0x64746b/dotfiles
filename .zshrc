@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/dtk/.oh-my-zsh
+export WORKON_HOME=$HOME/.venvs/
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -51,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search vi-mode virtualenv)
+plugins=(git history-substring-search vi-mode virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
