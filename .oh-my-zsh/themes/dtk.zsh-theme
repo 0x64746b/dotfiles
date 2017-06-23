@@ -1,6 +1,6 @@
 # ZSH Theme (based on `bira`)
 
-local return_code="%(?..%F{red}↦ %? %f)"
+local return_code="%(?..%B%F{red}↦ %? %f%b)"
 
 if [[ $UID -eq 0 ]]; then
     local user='%F{red}%n%f'
