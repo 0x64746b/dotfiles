@@ -60,6 +60,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey -M vicmd 'v' visual-mode
 export KEYTIMEOUT=1
 
+export REPORTTIME=5
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
