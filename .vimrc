@@ -16,6 +16,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" jedi-vim
+" $ cd ~/.vim/bundle/jedi-vim
+" $ git submodule update --init
+Plugin 'davidhalter/jedi-vim'
+
+" supertab
+Plugin 'ervandew/supertab'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -144,10 +152,8 @@ let Tlist_Show_One_File=1
 map <C-e> :NERDTreeToggle<CR>
 
 " SuperTab
-au FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal completeopt-=preview
 let g:SuperTabDefaultCompletionType = "context"
-
-set completeopt=menuone,longest,preview
 
 " Rope
 map <leader>j :RopeGotoDefinition<CR>
