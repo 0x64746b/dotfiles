@@ -16,6 +16,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" bufexplorer
+Plugin 'jlanzarotta/bufexplorer'
+
+" Ctrl-P
+Plugin 'kien/ctrlp.vim'
+
 " jedi-vim
 " $ cd ~/.vim/bundle/jedi-vim
 " $ git submodule update --init
