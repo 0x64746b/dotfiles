@@ -40,6 +40,12 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 
+"change cursor in insert mode
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[1 q"
+" eliminate lag when switching back to normal mode
+set timeoutlen=1000 ttimeoutlen=0
+
 "formatting
 syntax on
 filetype on
