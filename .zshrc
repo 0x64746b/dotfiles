@@ -52,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search vi-mode virtualenv virtualenvwrapper)
+plugins=(git history-substring-search vim-cursor virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
