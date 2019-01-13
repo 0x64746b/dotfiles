@@ -30,6 +30,12 @@ Plugin 'davidhalter/jedi-vim'
 " supertab
 Plugin 'ervandew/supertab'
 
+" latex suite
+Plugin 'vim-latex/vim-latex'
+
+" OpenSCAD syntax
+Plugin 'sirtaj/vim-openscad'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -139,7 +145,7 @@ highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 set colorcolumn=+1
 
 highlight OverLength ctermbg=lightgrey guibg=lightgrey
-autocmd BufWinEnter * let matchOverLength = matchadd('OverLength', '\%>80v.\+', 15)
+autocmd BufWinEnter *.py let matchOverLength = matchadd('OverLength', '\%>80v.\+', 15)
 
 ""fix mem leak upon matching
 autocmd BufWinLeave * call clearmatches()
@@ -173,3 +179,13 @@ map <leader>f :RopeFindOccurrences<CR>
 
 " Ack
 nmap <leader>a <Esc>:Ack!
+
+" Latex suite
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+set spell
+set spelllang=en_gb
+
+
+"filetypes
+au FileType tex setlocal wrap linebreak nolist textwidth=0 wrapmargin=0

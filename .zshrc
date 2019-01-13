@@ -52,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search vim-cursor virtualenv virtualenvwrapper)
+plugins=(git history-substring-search vi-mode vim-cursor virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,3 +90,5 @@ export REPORTTIME=5
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -AFlh --color=auto'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
