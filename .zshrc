@@ -52,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search vi-mode vim-cursor virtualenv virtualenvwrapper)
+plugins=(git history-substring-search vi-mode vim-cursor virtualenv virtualenvwrapper zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,6 +61,8 @@ bindkey -M vicmd 'v' visual-mode
 export KEYTIMEOUT=1
 
 export REPORTTIME=5
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=239'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
